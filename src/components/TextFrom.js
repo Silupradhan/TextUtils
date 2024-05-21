@@ -24,9 +24,8 @@ export default function TextFrom(props) {
   }
 
   const handelCopy = () => {
-    let text = document.getElementById("myBox")
-    text.select();
-    navigator.clipboard.writeText(text.value);  // copy the text
+    
+    navigator.clipboard.writeText(text);  // copy the text
     document.getSelection().removeAllRanges();  // remove the copy from copy text
     props.showAlert("your text has been copied","success")
   }
@@ -61,7 +60,7 @@ export default function TextFrom(props) {
 
       <div className="container" style={{color: props.mode=== "light" ? "black" : "white"}}>
         <h2>Your Text Summery</h2>
-        <p>{text.split(" ").filter((element)=>{return element=element.length!==0}).length} words and {text.length} charecters</p>
+        <p>{text.split(/\s+/).filter((element)=>{return element=element.length!==0}).length} words and {text.length} charecters</p>
         <p>{0.08 * text.split(" ").filter((element)=>{return element=element.length!==0}).length} minutes read</p>
         <h2>Preview</h2>
         <p>{text.length>0 ? text:"Nothing to Preview"}</p>
